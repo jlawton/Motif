@@ -73,7 +73,11 @@ typedef NS_ENUM(NSInteger, SymbolType) {
     [outputStream close];
 
     NSData *data = [outputStream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
-    [self.class outputData:data toFileNamed:outputFilename inDirectory:directoryURL checkForModification:checkForModification];
+    [self.class
+        outputData:data
+        toFileNamed:outputFilename
+        inDirectory:directoryURL
+        checkForModification:checkForModification];
 
     gbprintln(@"Generated: %@", outputFilename);
 }
@@ -156,7 +160,11 @@ typedef NS_ENUM(NSInteger, SymbolType) {
     [outputStream close];
 
     NSData *data = [outputStream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
-    [self.class outputData:data toFileNamed:outputFilename inDirectory:directoryURL checkForModification:checkForModification];
+    [self.class
+        outputData:data
+        toFileNamed:outputFilename
+        inDirectory:directoryURL
+        checkForModification:checkForModification];
 
     gbprintln(@"Generated: %@", outputFilename);
 }
