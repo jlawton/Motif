@@ -102,11 +102,19 @@ describe(@"deserialization from data", ^{
         });
 
         it(@"should handle floats", ^{
-            NSNumber *number = objectFromYAML(@"1.0");
+            NSDictionary *expectedConversions = @{
+                @"1.0": @(1.0), @"0.33": @(0.33),
+                @"-1.4": @(-1.4), @"-2.e-2": @(-2.e-2),
+            };
 
-            expect(number).notTo.beNil();
-            expect(number).to.beKindOf(NSNumber.class);
-            expect(number.floatValue).to.beCloseTo(1.0);
+            for (NSString *s in expectedConversions) {
+                NSNumber *expected = expectedConversions[s];
+                NSNumber *number = objectFromYAML(s);
+
+                expect(number).notTo.beNil();
+                expect(number).to.beKindOf(NSNumber.class);
+                expect(number.floatValue).to.beCloseTo(expected.floatValue);
+            }
         });
 
         it(@"should handle integers", ^{
